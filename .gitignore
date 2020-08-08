@@ -1,0 +1,8 @@
+# Environment Variable
+env/
+
+# JetBrains Stuff
+.idea
+
+# Input
+input/

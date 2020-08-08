@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="static/css/style.css?q=1280549780">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<body>
+<hgroup>
+    <h1>Wheat Detection</h1>
+</hgroup>
+<div class="container">
+    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
+        <div class="col-md-15 order-md-1">
+            <div class="mb-3">
+                <select class="custom-select d-block w-10" id="wheat_image" >
+                    <option value="">Choose...</option>
+                    <option value="2fd875eaa.jpg">2fd875eaa.jpg</option>
+                    <option value="51b3e36ab.jpg">51b3e36ab.jpg</option>
+                    <option value="51f1be19e.jpg">51f1be19e.jpg</option>
+                    <option value="53f253011.jpg">53f253011.jpg</option>
+                    <option value="348a992bb.jpg">348a992bb.jpg</option>
+                    <option value="796707dd7.jpg">796707dd7.jpg</option>
+                    <option value="aac893a91.jpg">aac893a91.jpg</option>
+                    <option value="cb8d261a3.jpg">cb8d261a3.jpg</option>
+                    <option value="cc3532ff6.jpg">cc3532ff6.jpg</option>
+                    <option value="51f1be19e.jpg">51f1be19e.jpg</option>
+
+                    <div class="invalid-feedback">
+                        Please select or upload a valid image.
+                    </div>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input type="file" id="image" name="image" class="form-control" required autofocus>
+            </div>
+            <center>
+                <button type="submit" class="btn btn-primary">Predict
+                </button>
+            </center>
+            {% if image_loc %}
+            <img class="mb-4" src="static/{{image_loc}}" alt="" width="512" height="512">
+            {%endif%}
+            <center class="mt-2">
+                {{ prediction }}
+            </center>
+        </div>
+    </form>
+</div>
+<footer>
+    <a href="https://github.com/tanmaypandey7/essay-grading" target="_blank"><img src="https://image.flaticon.com/icons/svg/25/25231.svg"></a>
+    <p class="mt-2">Made by Tanmay</a></p>
+</footer>
+</body>
+</html>
+
+<!--<script>-->
+<!--    $('#wheat_images').on('change', function(){-->
+<!--        $('#image').val($(this).val());-->
+<!--    })-->
+<!--    // init-->
+<!--    $('#wheat_images').change();-->
+<!--</script>-->
