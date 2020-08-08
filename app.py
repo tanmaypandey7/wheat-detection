@@ -8,10 +8,8 @@ import sys
 sys.path.append("./src")
 
 import cv2
-import matplotlib.pyplot as plt
 from utils.wbf_utils import weighted_boxes_fusion
 from PIL import Image
-import utils
 import config
 
 import numpy as np
