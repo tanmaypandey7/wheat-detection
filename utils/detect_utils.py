@@ -23,7 +23,7 @@ def run_wbf(boxes, scores, image_size=1024, iou_thr=0.4, skip_box_thr=0.34, weig
 
 def detect(config, save_img=False):
     weights, imgsz = config.weights, config.img_size
-    source = 'static'
+    source = 'static2'
 
     # Initialize
     device = torch_utils.select_device(config.device)
@@ -32,7 +32,7 @@ def detect(config, save_img=False):
 
     model = torch.load(weights, map_location=device)['model'].to(device).float().eval()
 
-    dataset = LoadImages(source, img_size=1024)
+    dataset = LoadImages(source, img_size=256)
 
     all_path = []
     all_bboxex = []
