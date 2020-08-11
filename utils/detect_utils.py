@@ -5,7 +5,7 @@ sys.path.insert(0, "utils/")
 
 import torch
 
-from utils.wbf_utils import weighted_boxes_fusion
+from wbf_utils import weighted_boxes_fusion
 
 from utils import torch_utils
 from utils.utils import scale_coords, non_max_suppression
