@@ -4,8 +4,8 @@ from flask import render_template
 from utils.detect_utils import detect
 import os
 import sys
-
 sys.path.append("./src")
+from flask import request
 
 import cv2
 from utils.wbf_utils import weighted_boxes_fusion
@@ -15,9 +15,10 @@ import config
 import numpy as np
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 DEVICE = "cpu"
 MODEL = None
-UPLOAD_FOLDER = "static"
+UPLOAD_FOLDER = "static2"
 
 
 @app.route('/predict', methods=['POST'])
@@ -27,15 +28,9 @@ def predict():
         UPLOAD_FOLDER,
         "image.jpg"
     )
-    # image_file.save(image_location)
     image_file.save(image_location)
-    # config.img_size = image_file
     res = detect(config)
-    # pred = detect(config)
-    # pred = 1
     all_path, all_score, all_bboxex = res
-    # pred_image[1].save(image_location)
-    size = 300
     idx = 0
     font = cv2.FONT_HERSHEY_SIMPLEX
     image = image = cv2.imread(all_path[idx], cv2.IMREAD_COLOR)
@@ -63,8 +58,19 @@ def predict():
                             fontScale, color, thickness, cv2.LINE_AA)
     im = Image.fromarray(image[:, :, ::-1])
     im.save("static/pred_image.jpg")
-    return render_template("index.html", image_loc='pred_image.jpg')
+    return render_template("index.html", image_loc="static/pred_image.jpg")
 
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 @app.route('/', methods=["GET", "POST"])
 def home():
