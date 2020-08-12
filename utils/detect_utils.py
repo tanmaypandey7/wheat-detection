@@ -11,6 +11,7 @@ from utils import torch_utils
 from utils.utils import scale_coords, non_max_suppression
 from utils.datasets import LoadImages
 
+
 def run_wbf(boxes, scores, image_size=1024, iou_thr=0.4, skip_box_thr=0.34, weights=None):
     #     boxes =boxes/(image_size-1)
     labels0 = [np.ones(len(scores[idx])) for idx in range(len(scores))]
@@ -24,7 +25,6 @@ def run_wbf(boxes, scores, image_size=1024, iou_thr=0.4, skip_box_thr=0.34, weig
 def detect(config, save_img=False):
     weights, imgsz = config.weights, config.img_size
     source = 'static2'
-
     # Initialize
     device = torch_utils.select_device(config.device)
     half = False
