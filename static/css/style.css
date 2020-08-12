@@ -13,13 +13,13 @@ hgroup {
 
 form {
     width: 380px;
-    height: 405px;
+/*    !*height: 405px;*!*/
     margin: 4em auto;
-    padding: 3em 2em 2em 2em;
-    background: #fafafa;
-    border: 1px solid #ebebeb;
-    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
-    max-height: 420px;
+    /*padding: 1em 1em 2em 2em;*/
+/*    background: #fafafa;*/
+/*    border: 1px solid #ebebeb;*/
+/*    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;*/
+/*    !*max-height: 420px;*!*/
 }
 
 /* Button */
@@ -56,7 +56,12 @@ form {
 .buttonBlue:hover { background: #357bd8; }
 
 
-footer { text-align: center; }
+footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
 footer p {
     color: #888;
