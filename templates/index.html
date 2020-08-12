@@ -10,11 +10,11 @@
     <h1>Wheat Detection</h1>
 </hgroup>
 <div class="container">
-    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
+    <form action="{{ url_for('predict') }}" method=post>
         <div class="col-md-15 order-md-1">
             <div class="mb-3">
-                <select class="custom-select d-block w-10" id="wheat_image" >
-                    <option value="">Choose...</option>
+                <select class="custom-select d-block w-10" id="wheat_image" name="selected-image">
+                    <option value="">Choose an image or upload your own</option>
                     <option value="2fd875eaa.jpg">2fd875eaa.jpg</option>
                     <option value="51b3e36ab.jpg">51b3e36ab.jpg</option>
                     <option value="51f1be19e.jpg">51f1be19e.jpg</option>
@@ -25,26 +25,24 @@
                     <option value="cb8d261a3.jpg">cb8d261a3.jpg</option>
                     <option value="cc3532ff6.jpg">cc3532ff6.jpg</option>
                     <option value="51f1be19e.jpg">51f1be19e.jpg</option>
-
                     <div class="invalid-feedback">
                         Please select or upload a valid image.
                     </div>
                 </select>
             </div>
+        </div>
+    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
             <div class="mb-3">
-                <input type="file" id="image" name="image" class="form-control" required autofocus>
+                <input type="file" id="validationImageArea" name="custom-image" class="form-control" src="" autofocus>
             </div>
-            <center>
+            <div style="text-align:center">
                 <button type="submit" class="btn btn-primary">Predict
                 </button>
-            </center>
             {% if image_loc %}
-            <img class="mb-4" src="{{image_loc}}" alt="" width="256" height="256">
+            <img class="mt-4" src="{{image_loc}}" alt="" width="350" height="350">
             {%endif%}
-            <center class="mt-2">
                 {{ prediction }}
-            </center>
-        </div>
+            </div>
     </form>
 </div>
 <footer>
@@ -54,10 +52,11 @@
 </body>
 </html>
 
-<!--<script>-->
-<!--    $('#wheat_images').on('change', function(){-->
-<!--        $('#image').val($(this).val());-->
-<!--    })-->
-<!--    // init-->
-<!--    $('#wheat_images').change();-->
-<!--</script>-->
+<script>
+    $('#wheat_image').on('change', function(){
+        var img_path = 'images/' + $(this).val();
+        $('#validationImageArea').attr('src', img_path);
+    })
+    // init
+    $('#wheat_image').change();
+</script>
