@@ -12,14 +12,8 @@ hgroup {
 }
 
 form {
-    width: 380px;
-/*    !*height: 405px;*!*/
+    width: 650px;
     margin: 4em auto;
-    /*padding: 1em 1em 2em 2em;*/
-/*    background: #fafafa;*/
-/*    border: 1px solid #ebebeb;*/
-/*    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;*/
-/*    !*max-height: 420px;*!*/
 }
 
 /* Button */
