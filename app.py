@@ -6,7 +6,7 @@ import os
 import sys
 sys.path.append("./src")
 from flask import request
-
+import shutil
 import cv2
 from utils.wbf_utils import weighted_boxes_fusion
 from PIL import Image
@@ -23,12 +23,16 @@ UPLOAD_FOLDER = "static2"
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    image_file = request.files["image"]
-    image_location = os.path.join(
-        UPLOAD_FOLDER,
-        "image.jpg"
-    )
-    image_file.save(image_location)
+    if request.form["selected-image"]:
+        image_file = request.form["selected-image"]
+        shutil.copyfile(f"images/{image_file}", "static2/image.jpg")
+    else:
+        image_file = request.form["custom-image"]
+        image_location = os.path.join(
+            UPLOAD_FOLDER,
+            "image.jpg"
+        )
+        image_file.save(image_location)
     res = detect(config)
     all_path, all_score, all_bboxex = res
     idx = 0
