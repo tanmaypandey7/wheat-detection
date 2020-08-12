@@ -10,7 +10,7 @@
     <h1>Wheat Detection</h1>
 </hgroup>
 <div class="container">
-    <form action="{{ url_for('predict') }}" method=post>
+    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
         <div class="col-md-15 order-md-1">
             <div class="mb-3">
                 <select class="custom-select d-block w-10" id="wheat_image" name="selected-image">
@@ -31,18 +31,17 @@
                 </select>
             </div>
         </div>
-    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
-            <div class="mb-3">
-                <input type="file" id="validationImageArea" name="custom-image" class="form-control" src="" autofocus>
-            </div>
-            <div style="text-align:center">
-                <button type="submit" class="btn btn-primary">Predict
-                </button>
-            {% if image_loc %}
-            <img class="mt-4" src="{{image_loc}}" alt="" width="350" height="350">
-            {%endif%}
-                {{ prediction }}
-            </div>
+        <div class="mb-3">
+            <input type="file" id="validationImageArea" name="custom-image" class="form-control" src="" autofocus>
+        </div>
+        <div style="text-align:center">
+            <button type="submit" class="btn btn-primary">Predict
+            </button>
+        {% if image_loc %}
+        <img class="mt-4" src="{{image_loc}}" alt="" width="350" height="350">
+        {%endif%}
+            {{ prediction }}
+        </div>
     </form>
 </div>
 <footer>
