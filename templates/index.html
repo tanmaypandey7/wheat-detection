@@ -9,10 +9,9 @@
 <hgroup>
     <h1>Wheat Detection</h1>
 </hgroup>
-<div class="container">
-    <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
-        <div class="col-md-15 order-md-1">
-            <div class="mb-3">
+<form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
+    <div class="row" style="text-align:center">
+        <div class="col-md">
                 <select class="custom-select d-block w-10" id="wheat_image" name="selected-image">
                     <option value="">Choose an image or upload your own</option>
                     <option value="2fd875eaa.jpg">2fd875eaa.jpg</option>
@@ -29,20 +28,20 @@
                         Please select or upload a valid image.
                     </div>
                 </select>
-            </div>
         </div>
-        <div class="mb-3">
+        <div class="col-md">
             <input type="file" id="validationImageArea" name="custom-image" class="form-control" src="" autofocus>
         </div>
-        <div style="text-align:center">
-            <button type="submit" class="btn btn-primary">Predict
-            </button>
-        {% if image_loc %}
-        <img class="mt-4" src="{{image_loc}}" alt="" width="350" height="350">
-        {%endif%}
-            {{ prediction }}
-        </div>
-    </form>
+    </div>
+    <div style="text-align:center">
+        <button type="submit" class="btn btn-primary mt-4">Predict
+        </button>
+    </div>
+</form>
+<div style="text-align:center">
+    {% if image_loc %}
+    <img class="" src="{{image_loc}}" alt="" width="350" height="350">
+    {%endif%}
 </div>
 <footer>
     <a href="https://github.com/tanmaypandey7/wheat-detection" target="_blank"><img src="https://image.flaticon.com/icons/svg/25/25231.svg"></a>
