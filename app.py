@@ -1,16 +1,15 @@
 from flask import Flask
-from flask import request
-from flask import render_template
-from utils.detect_utils import detect
+from flask import request, render_template
+
 import os
-import sys
-sys.path.append("./src")
-from flask import request
 import shutil
+
 import cv2
-from utils.wbf_utils import weighted_boxes_fusion
 from PIL import Image
+
 import config
+from utils.detect_utils import detect
+from utils.wbf_utils import weighted_boxes_fusion
 
 import numpy as np
 
@@ -25,7 +24,7 @@ UPLOAD_FOLDER = "static2"
 def predict():
     if request.form["selected-image"]:
         image_file = request.form["selected-image"]
-        shutil.copyfile(f"images/{image_file}", "static2/image.jpg")
+        shutil.copyfile(f"input/test/{image_file}", "static2/image.jpg")
     else:
         image_file = request.form["custom-image"]
         image_location = os.path.join(
