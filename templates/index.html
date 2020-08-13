@@ -5,7 +5,7 @@
 
 <body>
 <hgroup>
-    <h1>Wheat Detection</h1>
+    <h1>Wheat Head Detection</h1>
 </hgroup>
 <form action="{{ url_for('predict') }}" class="form-upload" method=post enctype=multipart/form-data>
     <div class="row" style="text-align:center">
@@ -28,7 +28,7 @@
                 </select>
         </div>
         <div class="col-md">
-            <input type="file" id="validationImageArea" name="custom-image" class="form-control" src="" autofocus>
+            <input type="file" id="validationImageArea" name="custom-image" class="form-control" autofocus>
         </div>
     </div>
     <div style="text-align:center">
@@ -38,7 +38,7 @@
 </form>
 <div style="text-align:center">
     {% if image_loc %}
-    <img class="" src="{{image_loc}}" alt="" width="350" height="350">
+    <img src="{{image_loc}}" width="350" height="350">
     {%endif%}
 </div>
 <footer>
