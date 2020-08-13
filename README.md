@@ -4,7 +4,7 @@ Detecting wheat heads using YOLOv5
 - [Brief overview of the competition images](#Brief-overview-of-the-competition-images)
 - [Modifications](#Modifications)
 - [Training](#Training)
-- [Inference and Deployment](#Inference and Deployment)
+- [Inference and Deployment](#Inference-and-Deployment)
 
 ## Brief overview of the competition images
 Wheat heads were from various sources:  
