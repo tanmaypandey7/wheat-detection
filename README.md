@@ -3,6 +3,8 @@ Detecting wheat heads using YOLOv5
 
 - [Brief overview of the competition images](#Brief-overview-of-the-competition-images)
 - [Modifications](#Modifications)
+- [Training](#Training)
+- [Inference and Deployment](#Inference and Deployment)
 
 ## Brief overview of the competition images
 Wheat heads were from various sources:  
@@ -29,6 +31,6 @@ I modified the code(especifically utils.datasets) so it had a 50-50 chance of cr
 ## Training
 We trained the model for 50 epochs on Colab Pro. 
 
-# Inference and Deployment
+## Inference and Deployment
 Our best model is currently being used for inference in this web-app. I uses HTML and CSS as front-end and Flask as the backend.
 This web-app is served on t2.medium EC2 instance.
