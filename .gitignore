@@ -5,4 +5,4 @@ env/
 .idea
 
 # Input
-input/
+input/last_yolov5x_4M50fold0.pt
