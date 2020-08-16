@@ -11,6 +11,8 @@ from utils import torch_utils
 from utils.utils import scale_coords, non_max_suppression
 from utils.datasets import LoadImages
 
+import cv2
+from PIL import Image
 
 def run_wbf(boxes, scores, image_size=1024, iou_thr=0.4, skip_box_thr=0.34, weights=None):
     #     boxes =boxes/(image_size-1)
@@ -23,16 +25,16 @@ def run_wbf(boxes, scores, image_size=1024, iou_thr=0.4, skip_box_thr=0.34, weig
 
 
 def detect(config, save_img=False):
-    weights, imgsz = config.weights, config.img_size
-    source = 'static2'
+    weights, imgsz = config.WEIGHTS, config.IMG_SIZE
+    source = config.SOURCE
     # Initialize
-    device = torch_utils.select_device(config.device)
+    device = torch_utils.select_device(config.DEVICE)
     half = False
     # Load model
 
     model = torch.load(weights, map_location=device)['model'].to(device).float().eval()
 
-    dataset = LoadImages(source, img_size=256)
+    dataset = LoadImages(source, img_size=config.IMG_SIZE)
 
     all_path = []
     all_bboxex = []
@@ -49,8 +51,8 @@ def detect(config, save_img=False):
         bboxes_2 = []
         score_2 = []
         if True:
-            pred = model(img, augment=config.augment)[0]
-            pred = non_max_suppression(pred, config.nms_conf_thr, config.nms_iou_thr,  classes=None, agnostic=False)
+            pred = model(img, augment=config.AUGMENT)[0]
+            pred = non_max_suppression(pred, config.NMS_CONF_THR, config.NMS_IOU_THR, classes=config.CLASSES, agnostic=config.AGNOSTIC_NMS)
 
             bboxes = []
             score = []
@@ -81,3 +83,41 @@ def format_prediction_string(boxes, scores):
     for j in zip(scores, boxes):
         pred_strings.append("{0:.4f} {1} {2} {3} {4}".format(j[0], j[1][0], j[1][1], j[1][2], j[1][3]))
     return " ".join(pred_strings)
+
+
+def save_image(res):
+    all_path, all_score, all_bboxex = res
+    idx = 0
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    image = cv2.imread(all_path[idx], cv2.IMREAD_COLOR)
+    # fontScale
+    fontScale = 1
+    boxes = all_bboxex[idx]
+    scores = all_score[idx]
+    # Blue color in BGR
+    color = (255, 0, 0)
+
+    for row in range(len(all_path)):
+        boxes = all_bboxex[row]
+        scores = all_score[row]
+        boxes, scores, labels = run_wbf(boxes, scores)
+        boxes = (boxes * 1024 / 1024).astype(np.int32).clip(min=0, max=1023)
+        boxes[:, 2] = boxes[:, 2] - boxes[:, 0]
+        boxes[:, 3] = boxes[:, 3] - boxes[:, 1]
+
+    # Line thickness of 2 px
+    thickness = 2
+    for b, s in zip(boxes, scores):
+        image = cv2.rectangle(image, (b[0], b[1]), (b[0] + b[2], b[1] + b[3]), (255, 0, 0), 3)
+        image = cv2.putText(image, '{:.2}'.format(s), (b[0] + np.random.randint(20), b[1]), font,
+                            fontScale, color, thickness, cv2.LINE_AA)
+    im = Image.fromarray(image[:, :, ::-1])
+    im.save("static/pred_image.jpg")
+
+
+def run_wbf(boxes, scores, iou_thr=0.5, skip_box_thr=0.43):
+    labels0 = [np.ones(len(scores[idx])) for idx in range(len(scores))]
+    boxes, scores, labels = weighted_boxes_fusion(boxes, scores, labels0, weights=None, iou_thr=iou_thr,
+                                                  skip_box_thr=skip_box_thr)
+    return boxes, scores, labels
+
