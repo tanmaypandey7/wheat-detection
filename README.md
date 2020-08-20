@@ -26,8 +26,10 @@ Here, I modified the repo to add Mixup.
       2 images are mixed together
     <a href="https://imgur.com/HkDFQ2g"><img src="https://imgur.com/HkDFQ2g.jpg" title="head" alt="head" /></a>
  
-I modified the code(especifically utils.datasets) so it had a 50-50 chance of creating a mixup or a mosaic image. This was very helpful for us as it boosted our score from 0.77->0.7769. 
-UPDATE : Kaggle has recently updated the public leaderboard due to which we are now at 24th position.
+I modified the code(especifically utils.datasets) so it had a 50-50 chance of creating a mixup or a mosaic image. This was very helpful for us as it boosted our public score from 0.77->0.7769. 
+
+These developments were made before we found out that YOLOv5 was non-compliant and had to switch to EfficientDet for our final 2 submissions.
+Kaggle later updated the leaderboard with the final 2 submissions and we ended up at 115th Private(Top 6%).
 
 ## Training
 We trained the model for 50 epochs on Colab Pro. 
