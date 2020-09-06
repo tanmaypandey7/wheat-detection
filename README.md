@@ -29,7 +29,7 @@ Here, I modified the repo to add Mixup.
 I modified the code(especifically utils.datasets) so it had a 50-50 chance of creating a mixup or a mosaic image. This was very helpful for us as it boosted our public score from 0.77->0.7769. 
 
 These developments were made before we found out that YOLOv5 was non-compliant and had to switch to EfficientDet for our final 2 submissions.
-Kaggle later updated the leaderboard with the final 2 submissions and we ended up at 115th Private(Top 6%).
+Kaggle later updated the leaderboard with the final 2 submissions and we ended up at 113th Private(Top 6%).
 
 ## Training
 We trained the model for 50 epochs on Colab Pro. 
