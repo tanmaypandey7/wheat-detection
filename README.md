@@ -12,6 +12,9 @@ Wheat heads were from various sources:
 A few labeled images are as shown: (Blue bounding boxes)  
 <a href="https://imgur.com/QhnuEEf"><img src="https://imgur.com/QhnuEEf.jpg" title="head" alt="head" width="378" height="378" /></a> <a href="https://imgur.com/5yUJCPV"><img src="https://imgur.com/5yUJCPV.jpg" title="head" alt="head" width="378" height="378" /></a>  
 
+## Pre-trained models
+Models can be downloaded from <a href="https://www.kaggle.com/ii5m0k3ii/mixup50e">here</a>.
+
 ## Modifications
 The YOLOv5 notebook internally does some augmentations while preparing a Dataset. 
 Originally, this Dataset consists of only Mosaic images.
