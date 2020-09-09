@@ -39,4 +39,4 @@ We trained the model for 50 epochs on Colab Pro.
 
 ## Inference and Deployment
 Our best model is currently being used for inference in this web-app. I uses HTML and CSS as front-end and Flask as the backend.
-This web-app is served on t2.medium EC2 instance.
+This web-app is served on Google Colab but can be easily deployed on AWS or GCP as well.
