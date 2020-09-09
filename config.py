@@ -5,5 +5,5 @@ NMS_IOU_THR = 0.9
 AUGMENT = True
 CLASSES = None
 AGNOSTIC_NMS = True
-DEVICE = "cpu"
+DEVICE = "gpu"
 SOURCE = "temp_image"
