@@ -7,6 +7,8 @@ Detecting wheat heads using YOLOv5
 - [Inference and Deployment](#Inference-and-Deployment)
 
 ## Web App Demo
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bZe1CDa4g7wnOUZFO9ZUmw15T2I6Po0w?usp=sharing)
+
 [![https://imgur.com/a/Ap2kaeX](http://img.youtube.com/vi/JrL8nsV53tc/0.jpg)](http://www.youtube.com/watch?v=JrL8nsV53tc "Wheat App")
 
 ## Brief overview of the competition images
