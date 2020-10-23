@@ -91,7 +91,7 @@ def save_image(res):
     font = cv2.FONT_HERSHEY_SIMPLEX
     image = cv2.imread(all_path[idx], cv2.IMREAD_COLOR)
     # fontScale
-    fontScale = 1
+    fontScale = 0.5
     boxes = all_bboxex[idx]
     scores = all_score[idx]
     # Blue color in BGR
@@ -106,9 +106,9 @@ def save_image(res):
         boxes[:, 3] = boxes[:, 3] - boxes[:, 1]
 
     # Line thickness of 2 px
-    thickness = 2
+    thickness = 1
     for b, s in zip(boxes, scores):
-        image = cv2.rectangle(image, (b[0], b[1]), (b[0] + b[2], b[1] + b[3]), (255, 0, 0), 3)
+        image = cv2.rectangle(image, (b[0], b[1]), (b[0] + b[2], b[1] + b[3]), (255, 0, 0), thickness)
         image = cv2.putText(image, '{:.2}'.format(s), (b[0] + np.random.randint(20), b[1]), font,
                             fontScale, color, thickness, cv2.LINE_AA)
     im = Image.fromarray(image[:, :, ::-1])
